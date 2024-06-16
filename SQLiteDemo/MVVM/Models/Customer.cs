@@ -1,5 +1,4 @@
 using SQLite;
-using Xamarin.Google.Crypto.Tink.Proto;
 
 namespace SQLiteDemo.MVVM.Models
 {

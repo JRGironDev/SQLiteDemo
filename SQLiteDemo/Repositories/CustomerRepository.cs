@@ -15,7 +15,7 @@ namespace SQLiteDemo.Repositories
         public CustomerRepository()
         {
             connection = new SQLiteConnection(Constants.DatabasePath, Constants.Flags);
-            
+
             connection.CreateTable<Customer>();
         }
 
@@ -25,7 +25,7 @@ namespace SQLiteDemo.Repositories
 
             try
             {
-                if(customer.ID != 0)
+                if (customer.ID != 0)
                 {
                     result = connection.Update(customer);
                     StatusMessage = $"{result} record(s) updated [Name: {customer.Name}]";
@@ -41,7 +41,7 @@ namespace SQLiteDemo.Repositories
                 StatusMessage = $"Failed to add {customer.Name}. Error: {ex.Message}";
             }
         }
-    
+
         public List<Customer> GetAll()
         {
             try
@@ -55,7 +55,7 @@ namespace SQLiteDemo.Repositories
 
             return null;
         }
-    
+
         public Customer GetById(int id)
         {
             try
@@ -89,7 +89,7 @@ namespace SQLiteDemo.Repositories
             try
             {
                 var customer = GetById(customerId);
-                int resulconnection.Delete<Customer>(customer);
+                int result = connection.Delete<Customer>(customer);
                 StatusMessage = $"{result} record(s) deleted";
             }
             catch (Exception ex)
