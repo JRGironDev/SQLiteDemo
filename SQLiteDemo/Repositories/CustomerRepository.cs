@@ -28,17 +28,17 @@ namespace SQLiteDemo.Repositories
                 if (customer.ID != 0)
                 {
                     result = connection.Update(customer);
-                    StatusMessage = $"{result} record(s) updated [Name: {customer.Name}]";
+                    StatusMessage = $"{result} record(s) updated";
                 }
                 else
                 {
                     result = connection.Insert(customer);
-                    StatusMessage = $"{result} record(s) added [Name: {customer.Name}]";
+                    StatusMessage = $"{result} record(s) added";
                 }
             }
             catch (Exception ex)
             {
-                StatusMessage = $"Failed to add {customer.Name}. Error: {ex.Message}";
+                StatusMessage = $"Failed to add customer. Error: {ex.Message}";
             }
         }
 

@@ -17,18 +17,20 @@ namespace SQLiteDemo.MVVM.ViewModels
 
         public MainPagerViewModel()
         {
+            Refresh();
+
             GenerateNewCustomer();
 
-            AddOrUpdateCommand = new Command(() =>
+            AddOrUpdateCommand = new Command(async () =>
             {
                 App.CustomerRepo.AddOrUpdate(CurrentCustomer);
 
                 Console.WriteLine(App.CustomerRepo.StatusMessage);
 
                 GenerateNewCustomer();
-            });
 
-            Refresh();
+                Refresh();
+            });
         }
 
         private void Refresh()
@@ -39,8 +41,8 @@ namespace SQLiteDemo.MVVM.ViewModels
         private void GenerateNewCustomer()
         {
             CurrentCustomer = new Faker<Customer>()
-                .RuleFor(c => c.Name, f => f.Person.FullName)
-                .RuleFor(c => c.Address, f => f.Person.Address.Street)
+                .RuleFor(x => x.Name, f => f.Person.FullName)
+                .RuleFor(x => x.Address, f => f.Person.Address.Street)
                 .Generate();
         }
     }
